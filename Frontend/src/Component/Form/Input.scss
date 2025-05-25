@@ -1,0 +1,39 @@
+.input-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1f2937; /* Gray-800 */
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    color: #111827; /* Gray-900 */
+    background-color: #ffffff;
+    border: 1px solid #d1d5db; /* Gray-300 */
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .input-field::placeholder {
+    color: #9ca3af; /* Gray-400 */
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #3b82f6; /* Blue-500 */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4); /* Blue focus ring */
+  }
+  
+  .input-field:disabled {
+    background-color: #f3f4f6; /* Gray-100 */
+    cursor: not-allowed;
+  }
+  
