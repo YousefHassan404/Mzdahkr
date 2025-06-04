@@ -10,17 +10,26 @@ import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
 import Home from "./Pages/Home.jsx";
 import Shares from "./Pages/shares.jsx";
+import ShareDetails from "./Pages/ShareDetails.jsx";
 import Projects from "./Pages/Projects.jsx";
 import Units from "./Pages/Units.jsx";
-
+import AdminDaschbord from "./Pages/AdminDaschbord.jsx";
+import UnitDetails from "./Pages/UnitDetails.jsx";
+import SharesUnitForm from "./Component/SharesUnitForm/SharesUnitForm.jsx";
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
+  { path: "/admin-dashboard", element: <SharesUnitForm /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  { path: "/shares/:id", element: <ShareDetails /> },
   { path: "/shares", element: <Shares /> },
   { path: "/project", element: <Projects /> },
-  { path: "/units", element: <Units /> },
+  { path: "/buy/:id", element: <UnitDetails /> },
+  { path: "/buy", element: <Units /> },
 ]);
+
+
+
 
 createRoot(document.getElementById("root")).render(
   <QueryProvider>
@@ -36,7 +45,7 @@ createRoot(document.getElementById("root")).render(
     />
     <StrictMode>
       <UserContextProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </UserContextProvider>
     </StrictMode>
   </QueryProvider>

@@ -19,9 +19,10 @@ export default function Register() {
     name: "",
     phone: "",
     email: "",
+    NN:"",
     password: "",
     confirmPassword: "",
-    role: "user",
+    role: "user", 
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -129,6 +130,17 @@ export default function Register() {
               value={data.email}
               label="البريد الإلكتروني"
               placeholder="أدخل بريدك الإلكتروني"
+              dir="rtl"
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+            />
+            <Input
+              id="NN"
+              type="text"
+              handleChange={handleChange}
+              value={data.NN}
+              label="الرقم القومي"
+              placeholder="الرقم القومي"
               dir="rtl"
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"

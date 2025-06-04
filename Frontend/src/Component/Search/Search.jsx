@@ -6,11 +6,9 @@ import Input from "../Form/Input";
 import "./Search.scss"; // تأكد من إضافة هذا السطر لاستيراد ملف CSS الخاص بك
 export default function Search() {
   const [searchData, setSearchData] = useState({
-    propertyType: "",
     category: "",
     rooms: "",
     price: "",
-    more: "",
     location: "",
   });
 
@@ -41,14 +39,6 @@ export default function Search() {
       </Button>
 
       <Select
-        id="propertyType"
-        value={searchData.propertyType}
-        label="للإيجار / للبيع"
-        handleChange={handleChange}
-        options={["للإيجار", "للبيع"]}
-      />
-
-      <Select
         id="category"
         value={searchData.category}
         label="نوع العقار"
@@ -70,14 +60,6 @@ export default function Search() {
         label="السعر"
         handleChange={handleChange}
         options={["< 500,000", "500,000 - 1,000,000", "> 1,000,000"]}
-      />
-
-      <Select
-        id="more"
-        value={searchData.more}
-        label="المزيد من الخيارات"
-        handleChange={handleChange}
-        options={["بلكونة", "تشطيب فاخر", "موقف سيارة", "مفروش"]}
       />
 
       <div style={{ position: "relative", minWidth: "240px", flexGrow: 1 }}>

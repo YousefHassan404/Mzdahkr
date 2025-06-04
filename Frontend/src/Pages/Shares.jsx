@@ -9,7 +9,7 @@ export default function Shares() {
     <>
     <Header></Header>
     <Search></Search>
-    <SharesUnits></SharesUnits>
+    <SharesUnits ></SharesUnits>
     <Footer></Footer>
     
 

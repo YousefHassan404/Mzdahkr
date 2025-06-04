@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Utils/Context/userContext";
 import authApi from "../../API/Auth";
 import { useNavigate } from "react-router-dom";
-
+import logo from '../../assets/logoV1.png'
 const Header = () => {
   const navigate = useNavigate();
   const { user , setUser } = useContext(UserContext);
@@ -28,50 +28,36 @@ const Header = () => {
           to={"/"}
           className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent"
         >
-          مزدخر
-          <span className="text-xs font-normal block text-gray-500 mt-[-5px]">
-            حيث تبدأ رحلتك إلى بيت الأحلام
-          </span>
+          <img src={logo} width={'80px'} alt="مزدخر" />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6 rtl:space-x-reverse text-sm">
           <Link
             to="/buy"
-            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="text-gray-950 hover:text-blue-600 transition-colors font-medium text-[15px]"
           >
             البيع
           </Link>
           <Link
             to="/rent"
-            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="text-gray-950 hover:text-blue-600 transition-colors font-medium text-[15px]"
           >
             للايجار
           </Link>
           <Link
-            to="/commercial"
-            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
-          >
-            تجارية
-          </Link>
-          <Link
             to="/new-projects"
-            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="text-gray-950 hover:text-blue-600 transition-colors font-medium text-[15px]"
           >
             مشاريع جديدة
           </Link>
           <Link
             to="/shares"
-            className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="text-gray-950 hover:text-blue-600 transition-colors font-medium text-[15px]"
           >
             شراء اسهم
           </Link>
-          <div className="relative group">
-            <button className="text-gray-700 hover:text-blue-600 transition-colors font-medium flex items-center gap-1">
-              اكتشف <span className="text-blue-500">▾</span>
-            </button>
-            {/* Drop down can be added here if needed */}
-          </div>
+        
         </nav>
 
         {/* Login Button */}
@@ -110,40 +96,35 @@ const Header = () => {
         <div className="md:hidden bg-white/95 backdrop-blur-sm px-6 py-4 space-y-4 shadow-lg text-right border-t border-gray-100">
           <Link
             to="/buy"
-            className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
           >
             البيع
           </Link>
           <Link
             to="/rent"
-            className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
           >
             للايجار
           </Link>
           <Link
             to="/commercial"
-            className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
           >
             تجارية
           </Link>
           <Link
             to="/new-projects"
-            className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
           >
             مشاريع جديدة
           </Link>
           <Link
             to="/shares"
-            className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
+            className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
           >
             شراء اسهم
           </Link>
-          <Link
-            to="/discover"
-            className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
-          >
-            اكتشف
-          </Link>
+          
           {user ? (
   <Link
     to="/"

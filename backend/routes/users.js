@@ -6,11 +6,11 @@ import { User } from "../models/User.js";
 //register
 
 userRouter.post("/", async (req, res) => {
-  const { name , password , phone ,email ,role} =  req.body;
+  const { name , password , phone ,email ,role ,NN} =  req.body;
   let user = await User.findOne({ email });
   if (user) return res.status(400).send("email is already taken");
 
-  user = new User({ name, password ,phone ,email ,role});
+  user = new User({ name, password ,phone ,email ,role,NN});
   await user.save();
   return res.send(user.getAuthToken());
 });

@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true, min: 8, max: 300 },
   phone: { type: String, required: true, min: 10, max: 15 },
   email: { type: String, required: true, min: 6, max: 50 },
+  NN:{type:String,required:true},
   role: { type: String, required: true, enum: ["admin", "user"] },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

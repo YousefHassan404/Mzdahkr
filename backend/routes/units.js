@@ -8,7 +8,6 @@ const unitRouter = express.Router();
 // اضافة وحدة جديدة
 unitRouter.post(
   '/',
-  authenticateUser,
   upload.fields([{ name: 'images' }, { name: 'videos' }]), // رفع ملفات صور وفيديوهات
   async (req, res) => {
     try {
@@ -56,5 +55,46 @@ unitRouter.post(
     }
   }
 );
+
+
+unitRouter.get('/', async (req, res) => {
+  try {
+    const units = await Unit.find();
+
+    const updatedUnits = units.map((unit) => ({
+      ...unit.toObject(),
+      images: unit.images.map((img) => `http://localhost:5000/uploads/${img}`),
+      videos: unit.videos.map((vid) => `http://localhost:5000/uploads/${vid}`),
+    }));
+
+    res.status(200).json(updatedUnits);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'حدث خطأ أثناء جلب الوحدات' });
+  }
+});
+
+
+unitRouter.get('/:id', async (req, res) => {
+  try {
+    const unit = await Unit.findById(req.params.id);
+
+    if (!unit) {
+      return res.status(404).json({ message: "الوحدة غير موجودة" });
+    }
+
+    const updatedUnit = {
+      ...unit.toObject(),
+      images: unit.images.map((img) => `http://localhost:5000/uploads/${img}`),
+      videos: unit.videos.map((vid) => `http://localhost:5000/uploads/${vid}`),
+    };
+
+    res.status(200).json(updatedUnit);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "حدث خطأ أثناء جلب الوحدة" });
+  }
+});
+
 
 export default unitRouter;
