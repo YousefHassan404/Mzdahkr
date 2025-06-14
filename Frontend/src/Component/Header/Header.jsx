@@ -32,18 +32,18 @@ const Header = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-6 rtl:space-x-reverse text-sm">
+        <nav dir="rtl" className="hidden md:flex space-x-6 rtl:space-x-reverse text-sm">
           <Link
             to="/buy"
             className="text-gray-950 hover:text-blue-600 transition-colors font-medium text-[15px]"
           >
-            البيع
+            وحدات للبيع
           </Link>
           <Link
             to="/rent"
             className="text-gray-950 hover:text-blue-600 transition-colors font-medium text-[15px]"
           >
-            للايجار
+            وحدات للايجار
           </Link>
           <Link
             to="/new-projects"
@@ -105,12 +105,6 @@ const Header = () => {
             className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
           >
             للايجار
-          </Link>
-          <Link
-            to="/commercial"
-            className="block text-gray-950 hover:text-blue-600 transition-colors font-medium"
-          >
-            تجارية
           </Link>
           <Link
             to="/new-projects"

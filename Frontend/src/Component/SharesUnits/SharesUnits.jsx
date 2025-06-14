@@ -93,7 +93,9 @@ export default function SharesUnits({ limit, filterType }) {
                 </div>
                 <div className="flex flex-col items-center">
                   <FaBath className="text-gray-400" />
-                  <span className="text-xs mt-1">{unit.noOfBathrooms} حمام</span>
+                  <span className="text-xs mt-1">
+                    {unit.noOfBathrooms} حمام
+                  </span>
                 </div>
                 <div className="flex flex-col items-center">
                   <FaRulerCombined className="text-gray-400" />

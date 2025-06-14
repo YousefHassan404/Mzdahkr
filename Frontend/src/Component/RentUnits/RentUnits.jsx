@@ -5,13 +5,11 @@ import { IoLocationOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import useGetData from "../../Utils/Hooks/useGetData";
 
-export default function UnitsList({ limit, filterType  }) {
+export default function RentUnits({ limit, filterType }) {
   const { data, isLoading, isError } = useGetData({
-    url: "http://localhost:5000/api/units",
-    key: ["units"],
+    url: "http://localhost:5000/api/rent",
+    key: ["rent"],
   });
-
-  
 
   const navigate = useNavigate();
 
@@ -36,11 +34,11 @@ export default function UnitsList({ limit, filterType  }) {
     filteredData = filteredData.slice(0, limit);
   }
 
-  const handleCardClick = (id) => navigate(`/buy/${id}`);
-  console.log(data);
+  const handleCardClick = (id) => navigate(`/rent/${id}`);
+
   return (
-    <div dir="rtl" className="container mx-auto px-6 py-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-8">
+    <div dir="rtl" className="container mx-auto px-6 py-10 mt-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-8 ">
         {filteredData.map((unit) => (
           <div
             key={unit._id}
@@ -76,7 +74,7 @@ export default function UnitsList({ limit, filterType  }) {
                   {unit.title || unit.type}
                 </h3>
                 <span className="bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full">
-                   للبيع
+                  للإيجار 
                 </span>
               </div>
 
@@ -95,7 +93,9 @@ export default function UnitsList({ limit, filterType  }) {
                 </div>
                 <div className="flex flex-col items-center">
                   <FaBath className="text-gray-400" />
-                  <span className="text-xs mt-1">{unit.noOfBathrooms} حمام</span>
+                  <span className="text-xs mt-1">
+                    {unit.noOfBathrooms} حمام
+                  </span>
                 </div>
                 <div className="flex flex-col items-center">
                   <FaRulerCombined className="text-gray-400" />
@@ -106,7 +106,7 @@ export default function UnitsList({ limit, filterType  }) {
               {/* Price and WhatsApp */}
               <div className="flex justify-between items-center pt-2">
                 <div>
-                  <p className="text-sm text-gray-500">السعر المعروض</p>
+                  <p className="text-sm text-gray-500">السعر المعروض للإيجار</p>
                   <p className="text-xl font-bold text-primary">
                     {unit.offeredPrice?.toLocaleString()} جنيه
                   </p>

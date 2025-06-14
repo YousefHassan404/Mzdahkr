@@ -85,7 +85,7 @@ export default function Register() {
 
   return (
     <>
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen flex flex-col relative mt-20">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-purple-900 opacity-70 z-0"></div>
       

@@ -96,11 +96,6 @@ export default function Login() {
                 dir="rtl"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
               />
-              <div className="flex justify-end mt-2">
-                <a href="/forgot-password" className="text-sm text-purple-600 hover:text-purple-800 hover:underline">
-                  نسيت كلمة المرور؟
-                </a>
-              </div>
             </div>
             
             <Button 
