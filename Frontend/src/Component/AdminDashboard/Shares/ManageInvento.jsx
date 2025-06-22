@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from "../Sidebar";
 import { useParams, useNavigate } from "react-router-dom";
+import { UserContext } from '../../../Utils/Context/userContext';
 
 export default function ManageInvento() {
+  const { user } = React.useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -145,6 +147,14 @@ export default function ManageInvento() {
       </div>
     );
   }
+
+  if (!user || user.role !== "مدير") {
+  return (
+    <div className="p-4 mt-10 mx-auto max-w-md bg-red-100 border border-red-300 text-red-800 rounded-md text-center shadow">
+      🚫 <strong>وصول مرفوض:</strong> هذه الصفحة مخصصة للمسؤولين فقط.
+    </div>
+  );
+}
 
   return (
     <div className="flex rtl">

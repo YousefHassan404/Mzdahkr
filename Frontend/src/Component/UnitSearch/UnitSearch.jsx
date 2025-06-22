@@ -85,7 +85,7 @@ const handleCardClick = (id) => navigate(`/buy/${id}`);
           value={searchData.rooms}
           label="غرف وحمامات"
           handleChange={handleChange}
-          options={["1 غرفة", "2 غرف", "3 غرف", "4+ غرف", "5+"]}
+          options={["1 غرفة", "2 غرف", "3 غرف", "4 غرف", "5+"]}
         />
 
         <Select

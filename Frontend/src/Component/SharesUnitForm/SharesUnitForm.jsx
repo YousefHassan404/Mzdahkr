@@ -18,6 +18,7 @@ export default function SharesUnitForm() {
       city: "",
       region: "",
     },
+    locationUrl: "",
     images: [],
     videos: [],
     noOfRooms: "",
@@ -93,6 +94,7 @@ export default function SharesUnitForm() {
       payload.append("deliveryDate", formData.deliveryDate);
       payload.append("noOfShares", formData.noOfShares);
       payload.append("location", JSON.stringify(formData.location));
+      payload.append("locationUrl", formData.locationUrl);
       payload.append("noOfRooms", formData.noOfRooms);
       payload.append("noOfBathrooms", formData.noOfBathrooms);
 
@@ -139,6 +141,7 @@ export default function SharesUnitForm() {
           <Input id="location.city" label="المدينة" value={formData.location.city} handleChange={handleChange} />
           <Input id="location.region" label="المنطقة" value={formData.location.region} handleChange={handleChange} />
         </div>
+        <Input id="locationUrl" label="رابط الموقع على الخريطة" value={formData.locationUrl} handleChange={handleChange} />
       </div>
 
       <div className="space-y-4">

@@ -132,6 +132,7 @@ const RentUnitForm = () => {
       city: '',
       region: '',
     },
+    locationUrl: '',
     noOfRooms: '',
     noOfBathrooms: '',
   });
@@ -205,6 +206,7 @@ const RentUnitForm = () => {
         <input name="address" type="text" placeholder="العنوان" className="input-field" onChange={handleChange} required />
         <input name="city" type="text" placeholder="المدينة" className="input-field" onChange={handleChange} required />
         <input name="region" type="text" placeholder="المنطقة" className="input-field" onChange={handleChange} required />
+        <input name="locationUrl" type="text" placeholder="رابط الموقع على الخريطة" className="input-field" onChange={handleChange} required />
       </div>
 
       <div className="grid gap-4">

@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import Sidebar from '../Sidebar';
+import { useContext } from 'react';
+import { UserContext } from '../../../Utils/Context/userContext';
+
 
 export default function DeleteUnit() {
+    const { user } = useContext(UserContext);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [rent, setRent] = useState(null);
@@ -24,6 +29,15 @@ export default function DeleteUnit() {
   };
 
   if (!rent) return <div className="text-center mt-10">جاري تحميل البيانات...</div>;
+
+if (!user || user.role !== "مدير") {
+  return (
+    <div className="p-4 mt-10 mx-auto max-w-md bg-red-100 border border-red-300 text-red-800 rounded-md text-center shadow">
+      🚫 <strong>وصول مرفوض:</strong> هذه الصفحة مخصصة للمسؤولين فقط.
+    </div>
+  );
+}
+
 
   return (
     <div className="flex min-h-screen bg-gray-100 text-right rtl">

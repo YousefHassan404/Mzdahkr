@@ -20,6 +20,7 @@ const AddUnitForm = () => {
       city: '',
       region: '',
     },
+    locationUrl: '',
   });
 
   const [images, setImages] = useState([]);
@@ -96,6 +97,7 @@ const AddUnitForm = () => {
           city: '',
           region: '',
         },
+        locationUrl: '',
       });
       setImages([]);
       setVideos([]);
@@ -314,7 +316,22 @@ const AddUnitForm = () => {
                   />
                 </div>
               </div>
+              <div>
+                  <label htmlFor="locationUrl" className="block text-sm font-medium text-gray-700 mb-1">
+                    الموقع علي Google Maps
+                  </label>
+                  <input
+                    type="text"
+                    id="locationUrl"
+                    name="locationUrl"
+                    value={formData.locationUrl}
+                    onChange={handleChange}
+                    className="input-field"
+                    required
+                  />
+                </div>
             </div>
+
 
             {/* Media Section */}
             <div className="bg-gray-50 p-6 rounded-lg">

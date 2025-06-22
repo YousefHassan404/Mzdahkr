@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Sidebar from "../Sidebar";
+import { UserContext } from "../../../Utils/Context/userContext";
 
 export default function EditUnit() {
+
+  const { user } = useContext(UserContext);
+
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -84,6 +89,7 @@ export default function EditUnit() {
       // الحقول المركبة
       formData.append("installmentPlan", JSON.stringify(unit.installmentPlan));
       formData.append("location", JSON.stringify(unit.location));
+      formData.append("locationUrl", unit.locationUrl || "");
 
       // إرسال الصور والفيديوهات الجديدة
       newImages.forEach((file) => formData.append("images", file));
@@ -108,6 +114,15 @@ export default function EditUnit() {
       alert("❌ حدث خطأ أثناء تحديث الوحدة");
     }
   };
+
+  if (!user || user.role !== "مدير") {
+  return (
+    <div className="p-4 mt-10 mx-auto max-w-md bg-red-100 border border-red-300 text-red-800 rounded-md text-center shadow">
+      🚫 <strong>وصول مرفوض:</strong> هذه الصفحة مخصصة للمسؤولين فقط.
+    </div>
+  );
+}
+
 
   return (
     <div className="flex">
@@ -234,7 +249,16 @@ export default function EditUnit() {
               placeholder="المنطقة"
               className="input"
             />
+
           </fieldset>
+          <input
+            type="text"
+            name="locationUrl"
+            value={unit.locationUrl || ""}
+            onChange={handleChange}
+            placeholder="رابط الموقع على الخريطة"
+            className="input"
+          />
 
           {/* عرض الصور القديمة مع زر حذف */}
           {unit.images && unit.images.length > 0 && (

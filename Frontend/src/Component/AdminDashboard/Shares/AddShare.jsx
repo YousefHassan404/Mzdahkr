@@ -1,8 +1,19 @@
 import React from 'react';
 import Sidebar from '../Sidebar';
 import SharesUnitForm from '../../SharesUnitForm/SharesUnitForm';
+import { UserContext } from '../../../Utils/Context/userContext';
 
 export default function AddShare() {
+  const { user } = React.useContext(UserContext);
+
+  if (!user || user.role !== "مدير") {
+    return (
+      <div className="p-4 mt-10 mx-auto max-w-md bg-red-100 border border-red-300 text-red-800 rounded-md text-center shadow">
+        🚫 <strong>وصول مرفوض:</strong> هذه الصفحة مخصصة للمسؤولين فقط.
+      </div>
+    );
+  }
+
   return (
     <div className="flex rtl">
       <Sidebar />

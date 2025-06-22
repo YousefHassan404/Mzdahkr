@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar';
+import { UserContext } from '../../../Utils/Context/userContext';
 
 export default function EditShare() {
+
+  const { user } = React.useContext(UserContext);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -71,6 +75,7 @@ export default function EditShare() {
       formData.append('offeredPrice', form.offeredPrice || '');
       formData.append('deliveryDate', form.deliveryDate || '');
       formData.append('location', JSON.stringify(form.location || {}));
+      formData.append('locationUrl', form.locationUrl || '');
       formData.append('noOfRooms', form.noOfRooms || '');
       formData.append('noOfBathrooms', form.noOfBathrooms || '');
       
@@ -100,6 +105,14 @@ export default function EditShare() {
 
   if (!form) return <div className="text-center mt-10 text-lg">جاري تحميل بيانات الوحدة...</div>;
 
+  if (!user || user.role !== "مدير") {
+  return (
+    <div className="p-4 mt-10 mx-auto max-w-md bg-red-100 border border-red-300 text-red-800 rounded-md text-center shadow">
+      🚫 <strong>وصول مرفوض:</strong> هذه الصفحة مخصصة للمسؤولين فقط.
+    </div>
+  );
+}
+
   return (
     <div className="flex min-h-screen bg-gray-100 text-right rtl">
       <Sidebar />
@@ -126,6 +139,7 @@ export default function EditShare() {
               <input name="location.city" value={form.location?.city || ''} onChange={handleChange} placeholder="المدينة" className="input-style" />
               <input name="location.region" value={form.location?.region || ''} onChange={handleChange} placeholder="المنطقة" className="input-style" />
             </div>
+            <input name="locationUrl" value={form.locationUrl || ''} onChange={handleChange} placeholder="رابط الموقع على الخريطة" className="input-style col-span-3" />
           </fieldset>
 
           <div className="grid grid-cols-2 gap-4">

@@ -34,10 +34,26 @@ import DeleteShare from "./Component/AdminDashboard/Shares/DeleteShare.jsx";
 import EditShare from "./Component/AdminDashboard/Shares/EditShare.jsx";
 import ManageInvento from "./Component/AdminDashboard/Shares/ManageInvento.jsx";
 
+import UserManagerPage from "./Component/AdminDashboard/Users/userManagerPage.jsx";
+import AddUser from "./Component/AdminDashboard/Users/AddUser.jsx";
+
+
+import MemberManagementPage from "./Component/AdminDashboard/MemberManagement/MemberManagementPage.jsx";
+import AddMember from "./Component/AdminDashboard/MemberManagement/AddMember.jsx";
+import MemberDetails from "./Component/AdminDashboard/MemberManagement/MemberDetails.jsx";
+
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
 
   { path: "/admin-dashboard", element: <AdminDaschbord /> },
+  { path: "/admin-dashboard/member/:id", element: <MemberDetails /> },
+
+    { path: "/admin-dashboard/sellers", element: <MemberManagementPage /> },
+    { path: "/admin-dashboard/sellers/new", element: <AddMember /> },
+
+
+    { path: "/admin-dashboard/users", element: <UserManagerPage /> },
+    { path: "/admin-dashboard/user/new", element: <AddUser /> },
 
   { path: "/admin-dashboard/units-rent", element: <RentManagerPage /> },
   { path: "/admin-dashboard/rent/new", element: <AddRent /> },
