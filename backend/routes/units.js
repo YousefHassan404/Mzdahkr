@@ -24,6 +24,7 @@ unitRouter.post(
         offeredPrice,
         installmentPlan,
         location,
+        locationUrl,
         noOfRooms,
         noOfBathrooms,
         deliveryDate, // استلام تاريخ التسليم من الـ body
@@ -48,6 +49,7 @@ unitRouter.post(
         deliveryDate,
         installmentPlan: JSON.parse(installmentPlan), // لازم تتبعت كـ JSON String
         location: JSON.parse(location), // لازم تتبعت كـ JSON String برضو
+        locationUrl,
         images: imagesPaths,
         videos: videosPaths,
         noOfRooms,
@@ -89,10 +91,6 @@ unitRouter.get("/search", async (req, res) => {
     const filter = {};
 
     // تصفية حسب نوع العقار
-    // if (type) {
-    //   filter.type = type;
-    // }
-
     if (type) {
       filter.type = { $regex: type, $options: "i" };
     }
@@ -102,32 +100,34 @@ unitRouter.get("/search", async (req, res) => {
       if (noOfRooms === "5+") {
         filter.noOfRooms = { $gte: 5 };
       } else {
-        filter.noOfRooms = Number(noOfRooms);
+        const roomsNumber = Number(noOfRooms);
+        if (!isNaN(roomsNumber)) {
+          filter.noOfRooms = roomsNumber;
+        }
       }
     }
 
-    // تصفية حسب السعر المعروض
-    if (offeredPrice) {
+    // تصفية حسب السعر المعروض مع التحقق من القيم
+    if (offeredPrice && typeof offeredPrice === "string") {
       if (offeredPrice.includes("-")) {
         const [min, max] = offeredPrice.split("-").map(Number);
-        filter.offeredPrice = { $gte: min, $lte: max };
+        if (!isNaN(min) && !isNaN(max)) {
+          filter.offeredPrice = { $gte: min, $lte: max };
+        }
       } else if (offeredPrice.startsWith("<")) {
         const max = Number(offeredPrice.replace("<", "").trim());
-        filter.offeredPrice = { $lte: max };
+        if (!isNaN(max)) {
+          filter.offeredPrice = { $lte: max };
+        }
       } else if (offeredPrice.startsWith(">")) {
         const min = Number(offeredPrice.replace(">", "").trim());
-        filter.offeredPrice = { $gte: min };
+        if (!isNaN(min)) {
+          filter.offeredPrice = { $gte: min };
+        }
       }
     }
 
-    // تصفية حسب المدينة أو المنطقة (location هو String من الـ query)
-    // if (location) {
-    //   filter.$or = [
-    //     { "location.city": { $regex: location, $options: "i" } },
-    //     { "location.region": { $regex: location, $options: "i" } },
-    //   ];
-    // }
-
+    // تصفية حسب المدينة أو المنطقة أو العنوان
     if (location) {
       const locationRegex = new RegExp(location, "i");
       filter.$or = [
@@ -220,6 +220,7 @@ unitRouter.put(
         offeredPrice,
         installmentPlan,
         location,
+        locationUrl,
         noOfRooms,
         noOfBathrooms,
         deliveryDate,
@@ -237,6 +238,7 @@ unitRouter.put(
         ? JSON.parse(installmentPlan)
         : unit.installmentPlan;
       unit.location = location ? JSON.parse(location) : unit.location;
+      unit.locationUrl = locationUrl;
       unit.noOfRooms = noOfRooms;
       unit.noOfBathrooms = noOfBathrooms;
 

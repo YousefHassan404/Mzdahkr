@@ -24,6 +24,7 @@ SharesUnitRouter.post(
         marketPrice,
         offeredPrice,
         location,
+        locationUrl,
         noOfRooms,
         noOfBathrooms,
         deliveryDate, // استلام تاريخ التسليم من الـ body
@@ -49,6 +50,7 @@ SharesUnitRouter.post(
         offeredPrice,
         deliveryDate,
         location: JSON.parse(location), // لازم تتبعت كـ JSON String برضو
+        locationUrl,
         images: imagesPaths,
         videos: videosPaths,
         noOfRooms,
@@ -233,6 +235,7 @@ SharesUnitRouter.put(
         offeredPrice,
         deliveryDate,
         location,
+        locationUrl,
         noOfRooms,
         noOfBathrooms,
         imagesToRemove,
@@ -250,6 +253,7 @@ SharesUnitRouter.put(
       if (marketPrice) unit.marketPrice = marketPrice;
       if (offeredPrice) unit.offeredPrice = offeredPrice;
       if (deliveryDate) unit.deliveryDate = deliveryDate;
+      if (locationUrl) unit.locationUrl = locationUrl;
       if (noOfRooms) unit.noOfRooms = noOfRooms;
       if (noOfBathrooms) unit.noOfBathrooms = noOfBathrooms;
 

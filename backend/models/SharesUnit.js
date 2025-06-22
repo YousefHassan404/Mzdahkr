@@ -12,6 +12,7 @@ const SharesUnitSchema = new mongoose.Schema({
     city: { type: String, required: true },
     region: { type: String, required: true },
   },
+  locationUrl: { type: String, required: true },
   images: [{ type: String, required: true }],
   videos: [{ type: String, required: true }],
   noOfRooms: { type: Number, required: true },

@@ -26,6 +26,7 @@ rentRouter.post(
         marketPrice,
         offeredPrice,
         location,
+        locationUrl,
         noOfRooms,
         noOfBathrooms,
         deliveryDate, // استلام تاريخ التسليم من الـ body
@@ -47,6 +48,7 @@ rentRouter.post(
         offeredPrice,
         deliveryDate,
         location: JSON.parse(location),
+        locationUrl,
         images: imagesPaths,
         videos: videosPaths,
         noOfRooms,
@@ -221,6 +223,7 @@ rentRouter.put(
         marketPrice,
         offeredPrice,
         location,
+        locationUrl,
         noOfRooms,
         noOfBathrooms,
         deliveryDate,
@@ -235,6 +238,7 @@ rentRouter.put(
       if (offeredPrice) rent.offeredPrice = offeredPrice;
       if (deliveryDate) rent.deliveryDate = deliveryDate;
       if (location) rent.location = JSON.parse(location);
+      if (locationUrl) rent.locationUrl = locationUrl;
       if (noOfRooms) rent.noOfRooms = noOfRooms;
       if (noOfBathrooms) rent.noOfBathrooms = noOfBathrooms;
 

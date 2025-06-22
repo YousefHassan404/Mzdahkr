@@ -11,6 +11,7 @@ const RentSchema = new mongoose.Schema({
         city : { type: String, required: true },
         region : { type: String, required: true },
     },
+    locationUrl : { type: String, required: true },
     images : [{ type: String, required: true }],
     videos : [{ type: String }],
     noOfRooms : { type: Number, required: true },
